@@ -1,98 +1,77 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+.loader{
+    width:50px;
+    height:50px;
+    border:5px solid rgba(255,255,255,.3);
+    border-top:5px solid white;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+    margin:20px auto;
 }
 
-body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    background:linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
+.hidden{
+    display:none;
 }
 
-.container{
-    width:100%;
-    padding:20px;
-    display:flex;
-    justify-content:center;
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-.weather-card{
-    width:400px;
-    background:rgba(255,255,255,0.12);
-    backdrop-filter:blur(15px);
+.stats{
+    margin-top:30px;
 
-    border:1px solid rgba(255,255,255,0.2);
-
-    padding:30px;
-    border-radius:25px;
-
-    text-align:center;
-
-    color:white;
-
-    box-shadow:
-    0 15px 35px rgba(0,0,0,0.2);
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
 }
 
-.weather-card h1{
-    margin-bottom:25px;
-    font-size:2.5rem;
-}
-
-.search-box{
-    display:flex;
-    gap:10px;
-    margin-bottom:30px;
-}
-
-.search-box input{
-    flex:1;
-    padding:12px;
-    border:none;
-    outline:none;
-    border-radius:12px;
-    font-size:16px;
-}
-
-.search-box button{
-    border:none;
-    padding:12px 18px;
-    border-radius:12px;
-    cursor:pointer;
-
-    background:white;
-    color:#667eea;
-
-    font-weight:bold;
-
+.stat-card{
+    background:rgba(255,255,255,.15);
+    padding:15px;
+    border-radius:15px;
+    backdrop-filter:blur(10px);
     transition:.3s;
 }
 
-.search-box button:hover{
-    transform:translateY(-2px);
+.stat-card:hover{
+    transform:translateY(-5px);
 }
 
-.weather-icon{
-    font-size:80px;
-    margin-bottom:15px;
+.stat-card h3{
+    font-size:1.8rem;
 }
 
-.temp{
-    font-size:4rem;
+.stat-card p{
+    font-size:.8rem;
+    opacity:.8;
+}
+
+.stat-card span{
     font-weight:bold;
-    margin:10px 0;
 }
 
-.condition{
-    font-size:1.2rem;
-    opacity:.9;
+.weather-card{
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+@media(max-width:500px){
+
+    .weather-card{
+        width:100%;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
 }
