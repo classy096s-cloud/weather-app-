@@ -1,50 +1,89 @@
-function searchWeather() {
+const weatherData = [
+{
+    icon:"☀️",
+    temp:"35°C",
+    condition:"Sunny",
+    humidity:"45%",
+    wind:"10 km/h",
+    feels:"38°C"
+},
+{
+    icon:"🌧",
+    temp:"25°C",
+    condition:"Rainy",
+    humidity:"85%",
+    wind:"18 km/h",
+    feels:"27°C"
+},
+{
+    icon:"☁️",
+    temp:"28°C",
+    condition:"Cloudy",
+    humidity:"60%",
+    wind:"12 km/h",
+    feels:"30°C"
+},
+{
+    icon:"⛈",
+    temp:"23°C",
+    condition:"Stormy",
+    humidity:"90%",
+    wind:"30 km/h",
+    feels:"24°C"
+}
+];
+
+function searchWeather(){
 
     const cityInput =
         document.getElementById("cityInput").value;
 
-    const city =
-        document.getElementById("city");
-
-    const temp =
-        document.getElementById("temp");
-
-    const condition =
-        document.getElementById("condition");
-
-    if(cityInput.trim() === "") {
-        alert("Please enter a city name");
+    if(cityInput.trim()===""){
+        alert("Enter city name");
         return;
     }
 
-    city.textContent = cityInput;
+    const loader =
+        document.getElementById("loader");
 
-    const fakeWeather = [
-        {
-            temp: "28°C",
-            condition: "Cloudy"
-        },
-        {
-            temp: "35°C",
-            condition: "Sunny"
-        },
-        {
-            temp: "22°C",
-            condition: "Rainy"
-        },
-        {
-            temp: "30°C",
-            condition: "Partly Cloudy"
-        }
-    ];
+    const content =
+        document.getElementById("weatherContent");
 
-    const random =
-        fakeWeather[
-            Math.floor(
-                Math.random() * fakeWeather.length
-            )
-        ];
+    loader.classList.remove("hidden");
+    content.style.opacity="0.4";
 
-    temp.textContent = random.temp;
-    condition.textContent = random.condition;
+    setTimeout(()=>{
+
+        const random =
+            weatherData[
+                Math.floor(
+                    Math.random()*weatherData.length
+                )
+            ];
+
+        document.getElementById("city")
+            .textContent = cityInput;
+
+        document.getElementById("icon")
+            .textContent = random.icon;
+
+        document.getElementById("temp")
+            .textContent = random.temp;
+
+        document.getElementById("condition")
+            .textContent = random.condition;
+
+        document.getElementById("humidity")
+            .textContent = random.humidity;
+
+        document.getElementById("wind")
+            .textContent = random.wind;
+
+        document.getElementById("feels")
+            .textContent = random.feels;
+
+        loader.classList.add("hidden");
+        content.style.opacity="1";
+
+    },1500);
 }
